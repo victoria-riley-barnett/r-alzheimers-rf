@@ -41,7 +41,14 @@ This type of classic ML application offers us the richest possible discussion fo
 *Choose, describe and audit the data to be used – description, analysis, full database audit and analysis etc. – use class slides as guidance*
 
 ### 3.1 Data Description
-[Content to be added]
+For our classical machine learning application, we selected the Alzheimer’s Disease Dataset curated by Rabie El Kharoua, available on Kaggle:
+https://www.kaggle.com/datasets/rabieelkharoua/alzheimers-disease-dataset
+
+This dataset contains anonymized clinical and demographic data for 2,149 patients, including various medical history indicators, lifestyle habits, and cognitive assessments. Each record includes over 30 features, such as age, gender, BMI, blood pressure, cholesterol levels, sleep quality, family history of Alzheimer’s, and results from mental status examinations like MMSE (Mini-Mental State Examination). The target variable is a binary classification:
+
+Diagnosis = 0 → No Alzheimer’s
+Diagnosis = 1 → Alzheimer’s detected
+
 
 ### 3.2 Data Analysis
 [Content to be added]
