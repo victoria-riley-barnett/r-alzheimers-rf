@@ -12,9 +12,17 @@
 ---
 
 ## 1. Executive Summary 
-*(1 page max)*
+CEO Petkovic,
 
-[Content to be added]
+My team is pursuing Option A, developing and auditing a classical ML application for ethics and trustworthiness. We are seeking approval to begin study and implementation of diagnostic assistance software designed to assist medical professionals treating potential Alzheimer's patients, helping them with early identification as a “first-screen” for who should be further examined and treated. This software aims to augment clinicians' expertise by providing flagging during the diagnostic process based on patients medical records, potentially leading to earlier care interventions.
+
+The software will be a classification machine learning solution trained on available anonymized patient data. Its primary purpose will be to analyze relevant patient data and generate a probabilistic assessment indicating the likelihood of Alzheimer's disease, this software will not replace clinical judgment but rather provide an additional, objective data point to inform the work of medical professionals in this space.
+
+We have identified a viable dataset for the development of a model, a dataset that has been open-sourced under an attribution license to assist with the development of this type of tooling. It contains 2,149 patients with 35 features, including one to be used as a label: if they were diagnosed with Alzheimer’s or not. 
+
+Based on the data, our team will implement our solution using the well-understood Random Forest algorithm, which is robust for any missing data in the patient's medical records. It also naturally mitigates overfitting with its system of trees built on subsets of data,  which is crucial for extrapolating a usable tool from a relatively low patient number.
+
+This type of classic ML application offers us the richest possible discussion for our audit, as it exists in a crucial intersection of technology and life that is only most precisely visible when discussing emergent technology for medicine or war. We think considering a serious medical application gives us the opportunity to weigh and consider the ethics of such systems far better than a more abstract technology offering only a business utility.
 
 <div style="page-break-after: always;"></div>
 
