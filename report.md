@@ -67,8 +67,11 @@ Our data statistics include 2,149 samples with 35 features and 2 classes that de
 ### 4.1 Tools and Methods Used
 #### Tools
 Stack:
+
 Language: R
-Libraries:
+
+#### Libraries:
+
 randomForest for algorithm implementation
 
 Dplyr for data manipulation
