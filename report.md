@@ -90,7 +90,30 @@ IDE: Rstudio
 [Content to be added]
 
 ### 4.3 Training Methodology
-[Content to be added]
+Algorithm: Random Forest (RF) Classification
+
+Rationale: Robust performance with high-dimensional data, inherent resistance to overfitting through decision trees, and native handling of missing data.
+
+Implementation: Binary classification (Alzheimer's vs. non-Alzheimer's) using patient data features.
+
+Probabilistic output for clinical interpretability (e.g., "87% likelihood of Alzheimer's") based on confidence from provided features.
+
+#### Hyperparameter Optimization & Validation
+We will grid search 108 combinations to ensure we select the best RF setup for our data
+
+We can perform 3-fold cross validation for robust accuracy evaluation during tuning while selecting best model
+#### Performance Evaluation
+After selecting best model, we can evaluate using a variety of robust measures on new data (ie, not our training data) to find:
+
+Accuracy, Precision, Recall
+
+F1 score
+
+ROC & AUC discrimination ability
+
+Confusion Matrix & OOB error check
+
+Clinical consistency check (ie, see if our model identifies the same most important factors as a Doctor would)
 
 ### 4.4 Accuracy Evaluation
 [Content to be added]
