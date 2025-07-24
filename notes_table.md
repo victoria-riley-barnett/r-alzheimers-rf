@@ -113,16 +113,14 @@
 | 5    | 500   | 0.3,0.7 | 0.8152090    |
 | 5    | 300   | 0.3,0.7 | 0.8128780    |
 
-## Key Insights
-
-### Best Performing Parameters
+## Best Performing Parameters
 - **Best Model**: mtry=25, ntree=300, cutoff=0.5,0.5 with accuracy = 95.24%
 - **Top 5 configurations** all achieve >95.1% accuracy
 - **mtry values**: Higher mtry (15-25) generally perform better than lower values (5-10)
 - **ntree values**: Performance is relatively stable across different tree counts
 - **cutoff values**: Balanced cutoff (0.5,0.5) and conservative cutoff (0.3,0.3) perform best
 
-### Performance Patterns
+## Performance Patterns
 1. **mtry=5 with cutoff=0.3,0.7**: Consistently poor performance (81-82% accuracy)
 2. **mtry=25 with cutoff=0.5,0.5**: Most reliable high performance
 3. **mtry=15**: Good balance of performance and stability
