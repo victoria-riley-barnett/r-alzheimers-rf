@@ -81,8 +81,6 @@ randomForest for algorithm implementation
 
 Dplyr for data manipulation
 
-Caret for streamlined cross-validation
-
 IDE: Rstudio
 
 
