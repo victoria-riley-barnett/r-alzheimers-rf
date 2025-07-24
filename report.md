@@ -29,6 +29,7 @@ This type of classic ML application offers us the richest possible discussion fo
 ---
 
 ## 2. Motivation, Problem Description and Case Study Goals
+
 Our motivation for choosing to work with this Alzheimer’s dataset is to be able to provide a viable tool that could help decide whether a patient needs further evaluation for Alzheimer’s disease, which could assist in effective management and possible treatment for patients that are detected to have Alzheimer’s early on. Since using Machine Learning could possibly detect patterns that may not be evident to clinicians, our software could be quite a useful tool for clinicians in deciding whether to further evaluate a patient if our software shows a strong likelihood for a patient to have the disease. The tool could potentially aid in further progression of the disease if it correctly predicts the likelihood of a patient having Alzheimer’s disease.
 
 Our problem description here is that clinicians may not be able to entirely determine whether a patient may need further evaluation after first being screened and evaluated for Alzheimer’s disease. With our ML application, we could offer a tool that could inform a clinician's decision in seeking further evaluation for a patient. This could lead to early detection of Alzheimer’s disease in a patient with possible treatment and management going into effect when most needed.
