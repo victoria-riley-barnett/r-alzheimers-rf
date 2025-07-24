@@ -105,15 +105,7 @@ We can perform 3-fold cross validation for robust accuracy evaluation during tun
 #### Performance Evaluation
 After selecting best model, we can evaluate using a variety of robust measures on new data (ie, not our training data) to find:
 
-Accuracy, Precision, Recall
-
-F1 score
-
-ROC & AUC discrimination ability
-
-Confusion Matrix & OOB error check
-
-Clinical consistency check (ie, see if our model identifies the same most important factors as a Doctor would)
+Accuracy, Precision, Recall, F1 score, ROC & AUC discrimination ability, Confusion Matrix & OOB error check, Clinical consistency check (ie, see if our model identifies the same most important factors as a Doctor would)
 
 ### 4.4 Accuracy Evaluation
 [Content to be added]
