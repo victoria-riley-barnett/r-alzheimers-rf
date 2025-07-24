@@ -203,3 +203,83 @@
 - **One Marginal Case**: Sample 1838 (negative case) shows 98.67% confidence
 - **Perfect Accuracy**: All 6 verification samples correctly classified
 - **Model Reliability**: Strong confidence scores indicate robust decision boundaries
+
+
+Cutoff Analysis Results:
+   Cutoff FalseNegatives FalsePositives Recall Precision     F1 Accuracy
+1 0.5,0.5             45             49 0.9406    0.9356 0.9381   0.9561
+2 0.6,0.4             25             68 0.9670    0.9150 0.9403   0.9566
+3 0.7,0.3             16             88 0.9789    0.8938 0.9344   0.9515
+4 0.8,0.2              7            104 0.9908    0.8782 0.9311   0.9482
+5 0.9,0.1              5            141 0.9934    0.8421 0.9115   0.9319
+
+kept cutoff at 0.7,0.3 for final model as it was the best trade-off between recall and precision.
+
+---
+
+## Recall-Optimized Grid Search Results (Cutoff 0.7,0.3)
+
+| mtry | ntree | cutoff  | avg_recall | avg_accuracy |
+|------|-------|---------|------------|--------------|
+| 10   | 3000  | 0.7,0.3 | 0.9779     | 0.9468       |
+| 20   | 300   | 0.7,0.3 | 0.9766     | 0.9496       |
+| 15   | 500   | 0.7,0.3 | 0.9766     | 0.9477       |
+| 20   | 700   | 0.7,0.3 | 0.9766     | 0.9505       |
+| 25   | 1200  | 0.7,0.3 | 0.9766     | 0.9515       |
+| 25   | 500   | 0.7,0.3 | 0.9766     | 0.9505       |
+| 10   | 500   | 0.7,0.3 | 0.9754     | 0.9468       |
+| 20   | 900   | 0.7,0.3 | 0.9754     | 0.9501       |
+| 20   | 1200  | 0.7,0.3 | 0.9754     | 0.9501       |
+| 20   | 3000  | 0.7,0.3 | 0.9752     | 0.9501       |
+| 15   | 300   | 0.7,0.3 | 0.9741     | 0.9491       |
+| 15   | 3000  | 0.7,0.3 | 0.9741     | 0.9487       |
+| 10   | 700   | 0.7,0.3 | 0.9741     | 0.9459       |
+| 15   | 900   | 0.7,0.3 | 0.9739     | 0.9482       |
+| 15   | 2000  | 0.7,0.3 | 0.9739     | 0.9491       |
+| 20   | 500   | 0.7,0.3 | 0.9739     | 0.9501       |
+| 25   | 700   | 0.7,0.3 | 0.9739     | 0.9501       |
+| 25   | 900   | 0.7,0.3 | 0.9739     | 0.9501       |
+| 10   | 2000  | 0.7,0.3 | 0.9739     | 0.9459       |
+| 20   | 2000  | 0.7,0.3 | 0.9739     | 0.9491       |
+| 25   | 2000  | 0.7,0.3 | 0.9739     | 0.9505       |
+| 25   | 3000  | 0.7,0.3 | 0.9739     | 0.9496       |
+| 10   | 1200  | 0.7,0.3 | 0.9739     | 0.9463       |
+| 10   | 900   | 0.7,0.3 | 0.9728     | 0.9445       |
+| 15   | 700   | 0.7,0.3 | 0.9727     | 0.9491       |
+| 15   | 1200  | 0.7,0.3 | 0.9727     | 0.9468       |
+| 10   | 300   | 0.7,0.3 | 0.9725     | 0.9435       |
+| 5    | 500   | 0.7,0.3 | 0.9717     | 0.9113       |
+| 5    | 300   | 0.7,0.3 | 0.9716     | 0.9146       |
+| 25   | 300   | 0.7,0.3 | 0.9712     | 0.9501       |
+| 5    | 900   | 0.7,0.3 | 0.9705     | 0.9132       |
+| 5    | 500   | 0.7,0.3 | 0.9705     | 0.9095       |
+| 5    | 700   | 0.7,0.3 | 0.9692     | 0.9146       |
+| 5    | 3000  | 0.7,0.3 | 0.9692     | 0.9123       |
+| 5    | 700   | 0.7,0.3 | 0.9679     | 0.9113       |
+| 5    | 3000  | 0.7,0.3 | 0.9679     | 0.9141       |
+| 5    | 900   | 0.7,0.3 | 0.9679     | 0.9123       |
+| 5    | 1200  | 0.7,0.3 | 0.9679     | 0.9151       |
+| 5    | 300   | 0.7,0.3 | 0.9678     | 0.9113       |
+| 5    | 2000  | 0.7,0.3 | 0.9666     | 0.9123       |
+| 5    | 2000  | 0.7,0.3 | 0.9666     | 0.9141       |
+| 5    | 1200  | 0.7,0.3 | 0.9665     | 0.9151       |
+
+### Key Findings from Recall-Optimized Search
+
+**Best Configuration for Recall**: 
+- **mtry=10, ntree=3000, cutoff=0.7,0.3**
+- **Recall**: 97.79% (excellent for medical screening)
+- **Accuracy**: 94.68% (good overall performance)
+
+**Performance Insights**:
+1. **mtry=10**: Surprisingly performs best for recall optimization
+2. **Higher ntree values**: 2000-3000 trees show improved recall
+3. **mtry=5**: Consistently lower accuracy (~91%) but still good recall
+4. **Sweet Spot**: mtry=20-25 with ntree=500-1200 offers best recall/accuracy balance
+
+**Medical Screening Implications**:
+- **97.79% recall** means only ~2% of Alzheimer's cases would be missed
+- This represents excellent sensitivity for a screening tool
+- The accuracy trade-off (94.68% vs 95.24%) is minimal and acceptable
+
+reran grid search with this cutoff and found the best model was:
