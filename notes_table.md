@@ -128,95 +128,6 @@
 
 ---
 
-## Final Model Results
-
-### Out-of-Bag (OOB) Confusion Matrix
-
-| Actual | Predicted 0 | Predicted 1 |
-|--------|-------------|-------------|
-| 0      | 1338        | 48          |
-| 1      | 51          | 706         |
-
-### Performance Metrics
-
-| Metric    | Value     |
-|-----------|-----------|
-| OOB Error | 0.0462    |
-| Accuracy  | 0.9538    |
-| Precision | 0.9363    |
-| Recall    | 0.9326    |
-| F1 Score  | 0.9345    |
-
----
-
-## Verification Set Results
-
-### Verification Set Confusion Matrix
-
-| Actual | Predicted 0 | Predicted 1 |
-|--------|-------------|-------------|
-| 0      | 3           | 0           |
-| 1      | 0           | 3           |
-
-**Perfect Classification**: 100% accuracy on verification set (6/6 samples correctly classified)
-
----
-
-## Feature Importance Analysis
-
-### Top 10 Most Important Features
-
-| Rank | Feature              | Mean Decrease Accuracy | Mean Decrease Gini |
-|------|----------------------|------------------------|-------------------|
-| 1    | FunctionalAssessment | 193.18                | 198.24            |
-| 2    | ADL                  | 189.88                | 198.95            |
-| 3    | MMSE                 | 155.87                | 201.96            |
-| 4    | MemoryComplaints     | 148.32                | 121.08            |
-| 5    | BehavioralProblems   | 117.46                | 96.79             |
-| 6    | PatientID            | 52.73                 | 69.23             |
-| 7    | EducationLevel       | 2.57                  | 2.47              |
-| 8    | DiastolicBP          | 2.33                  | 5.49              |
-| 9    | SystolicBP           | 1.98                  | 6.57              |
-| 10   | DietQuality          | 1.84                  | 9.52              |
-
-### Key Insights on Feature Importance
-- **Top Clinical Predictors**: FunctionalAssessment, ADL, and MMSE are the strongest predictors
-- **Cognitive Measures**: Memory complaints and behavioral problems are highly predictive
-- **Demographics**: PatientID shows some importance (possibly due to study design)
-- **Health Metrics**: Blood pressure and diet quality have minimal predictive value
-
----
-
-## Individual Verification Sample Results
-
-| Sample ID | True Label | Predicted Class | Probability Negative | Probability Positive |
-|-----------|------------|-----------------|---------------------|---------------------|
-| 966       | 1          | 1               | 0.0000              | 1.0000              |
-| 171       | 1          | 1               | 0.0000              | 1.0000              |
-| 1697      | 1          | 1               | 0.0000              | 1.0000              |
-| 545       | 0          | 0               | 1.0000              | 0.0000              |
-| 1282      | 0          | 0               | 1.0000              | 0.0000              |
-| 1838      | 0          | 0               | 0.9867              | 0.0133              |
-
-### Sample Analysis
-- **High Confidence Predictions**: 5 out of 6 samples have probability scores of 1.0 or 0.0
-- **One Marginal Case**: Sample 1838 (negative case) shows 98.67% confidence
-- **Perfect Accuracy**: All 6 verification samples correctly classified
-- **Model Reliability**: Strong confidence scores indicate robust decision boundaries
-
-
-Cutoff Analysis Results:
-   Cutoff FalseNegatives FalsePositives Recall Precision     F1 Accuracy
-1 0.5,0.5             45             49 0.9406    0.9356 0.9381   0.9561
-2 0.6,0.4             25             68 0.9670    0.9150 0.9403   0.9566
-3 0.7,0.3             16             88 0.9789    0.8938 0.9344   0.9515
-4 0.8,0.2              7            104 0.9908    0.8782 0.9311   0.9482
-5 0.9,0.1              5            141 0.9934    0.8421 0.9115   0.9319
-
-kept cutoff at 0.7,0.3 for final model as it was the best trade-off between recall and precision.
-
----
-
 ## Recall-Optimized Grid Search Results (Cutoff 0.7,0.3)
 
 | mtry | ntree | cutoff  | avg_recall | avg_accuracy |
@@ -282,4 +193,104 @@ kept cutoff at 0.7,0.3 for final model as it was the best trade-off between reca
 - This represents excellent sensitivity for a screening tool
 - The accuracy trade-off (94.68% vs 95.24%) is minimal and acceptable
 
-reran grid search with this cutoff and found the best model was:
+reran grid search with this cutoff and found the best model, which was:
+- **mtry=10, ntree=3000, cutoff=0.7,0.3**
+- **Recall**: 97.79%
+- **Accuracy**: 94.68%
+
+---
+
+## Final Recall-Optimized Model Results
+
+**Model Configuration**: mtry=10, ntree=3000, cutoff=0.7,0.3
+
+### Out-of-Bag (OOB) Confusion Matrix
+
+| Actual | Predicted 0 | Predicted 1 |
+|--------|-------------|-------------|
+| 0      | 1289        | 97          |
+| 1      | 16          | 741         |
+
+### Performance Metrics
+
+| Metric    | Value     |
+|-----------|-----------|
+| OOB Error | 0.0527    |
+| Accuracy  | 0.9473    |
+| Precision | 0.8842    |
+| Recall    | 0.9789    |
+| F1 Score  | 0.9292    |
+
+### Key Performance Improvements
+- **False Negatives Reduced**: From 51 to 16 (68% reduction!)
+- **Recall Improved**: From 93.26% to 97.89% (+4.63%)
+- **Medical Impact**: Only 2.11% of Alzheimer's cases missed vs 6.74% previously
+
+---
+
+## Verification Set Results
+
+### Verification Set Confusion Matrix
+
+| Actual | Predicted 0 | Predicted 1 |
+|--------|-------------|-------------|
+| 0      | 3           | 0           |
+| 1      | 0           | 3           |
+
+**Perfect Classification**: 100% accuracy maintained on verification set (6/6 samples correctly classified)
+
+---
+
+## Feature Importance Analysis (Recall-Optimized Model)
+
+### Top 10 Most Important Features
+
+| Rank | Feature              | Mean Decrease Accuracy | Mean Decrease Gini |
+|------|----------------------|------------------------|-------------------|
+| 1    | FunctionalAssessment | 362.91                | 209.10            |
+| 2    | ADL                  | 334.87                | 185.30            |
+| 3    | MMSE                 | 267.28                | 150.45            |
+| 4    | MemoryComplaints     | 266.71                | 107.80            |
+| 5    | BehavioralProblems   | 196.24                | 68.89             |
+| 6    | PatientID            | 101.63                | 53.83             |
+| 7    | Age                  | 4.35                  | 13.56             |
+| 8    | EducationLevel       | 3.85                  | 4.73              |
+| 9    | SleepQuality         | 2.81                  | 16.12             |
+| 10   | SystolicBP           | 2.68                  | 13.36             |
+
+### Feature Importance Changes
+- **Increased Importance**: Top clinical features show much higher importance scores
+- **FunctionalAssessment**: Nearly doubled from 193.18 to 362.91
+- **ADL**: Increased from 189.88 to 334.87
+- **New Features**: Age and SleepQuality now appear in top 10
+
+---
+
+## Individual Verification Sample Results
+
+| Sample ID | True Label | Predicted Class | Probability Negative | Probability Positive |
+|-----------|------------|-----------------|---------------------|---------------------|
+| 966       | 1          | 1               | 0.0597              | 0.9403              |
+| 171       | 1          | 1               | 0.0203              | 0.9797              |
+| 1697      | 1          | 1               | 0.0487              | 0.9513              |
+| 545       | 0          | 0               | 0.9563              | 0.0437              |
+| 1282      | 0          | 0               | 0.9490              | 0.0510              |
+| 1838      | 0          | 0               | 0.9100              | 0.0900              |
+
+### Sample Analysis Comparison
+- **More Conservative Predictions**: Lower confidence scores compared to original model
+- **Still Perfect Accuracy**: All 6 verification samples correctly classified
+- **Reasonable Confidence**: Positive cases show 94-98% confidence, negative cases 91-96%
+- **Sample 1838**: Previously 98.67% confidence, now 91% (more conservative but still correct)
+
+## Model Comparison Summary
+
+| Metric | Original Model (0.5,0.5) | Recall-Optimized (0.7,0.3) | Improvement |
+|--------|--------------------------|----------------------------|-------------|
+| Recall | 93.26% | 97.89% | +4.63% |
+| Precision | 93.63% | 88.42% | -5.21% |
+| Accuracy | 95.38% | 94.73% | -0.65% |
+| False Negatives | 51 | 16 | -68% |
+| False Positives | 48 | 97 | +102% |
+
+**Clinical Decision**: The recall-optimized model is superior for medical screening as it significantly reduces missed diagnoses with only a minor accuracy trade-off.
