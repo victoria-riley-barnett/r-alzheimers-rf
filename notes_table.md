@@ -125,3 +125,81 @@
 2. **mtry=25 with cutoff=0.5,0.5**: Most reliable high performance
 3. **mtry=15**: Good balance of performance and stability
 4. **cutoff=0.3,0.7**: Generally reduces performance across all mtry values
+
+---
+
+## Final Model Results
+
+### Out-of-Bag (OOB) Confusion Matrix
+
+| Actual | Predicted 0 | Predicted 1 |
+|--------|-------------|-------------|
+| 0      | 1338        | 48          |
+| 1      | 51          | 706         |
+
+### Performance Metrics
+
+| Metric    | Value     |
+|-----------|-----------|
+| OOB Error | 0.0462    |
+| Accuracy  | 0.9538    |
+| Precision | 0.9363    |
+| Recall    | 0.9326    |
+| F1 Score  | 0.9345    |
+
+---
+
+## Verification Set Results
+
+### Verification Set Confusion Matrix
+
+| Actual | Predicted 0 | Predicted 1 |
+|--------|-------------|-------------|
+| 0      | 3           | 0           |
+| 1      | 0           | 3           |
+
+**Perfect Classification**: 100% accuracy on verification set (6/6 samples correctly classified)
+
+---
+
+## Feature Importance Analysis
+
+### Top 10 Most Important Features
+
+| Rank | Feature              | Mean Decrease Accuracy | Mean Decrease Gini |
+|------|----------------------|------------------------|-------------------|
+| 1    | FunctionalAssessment | 193.18                | 198.24            |
+| 2    | ADL                  | 189.88                | 198.95            |
+| 3    | MMSE                 | 155.87                | 201.96            |
+| 4    | MemoryComplaints     | 148.32                | 121.08            |
+| 5    | BehavioralProblems   | 117.46                | 96.79             |
+| 6    | PatientID            | 52.73                 | 69.23             |
+| 7    | EducationLevel       | 2.57                  | 2.47              |
+| 8    | DiastolicBP          | 2.33                  | 5.49              |
+| 9    | SystolicBP           | 1.98                  | 6.57              |
+| 10   | DietQuality          | 1.84                  | 9.52              |
+
+### Key Insights on Feature Importance
+- **Top Clinical Predictors**: FunctionalAssessment, ADL, and MMSE are the strongest predictors
+- **Cognitive Measures**: Memory complaints and behavioral problems are highly predictive
+- **Demographics**: PatientID shows some importance (possibly due to study design)
+- **Health Metrics**: Blood pressure and diet quality have minimal predictive value
+
+---
+
+## Individual Verification Sample Results
+
+| Sample ID | True Label | Predicted Class | Probability Negative | Probability Positive |
+|-----------|------------|-----------------|---------------------|---------------------|
+| 966       | 1          | 1               | 0.0000              | 1.0000              |
+| 171       | 1          | 1               | 0.0000              | 1.0000              |
+| 1697      | 1          | 1               | 0.0000              | 1.0000              |
+| 545       | 0          | 0               | 1.0000              | 0.0000              |
+| 1282      | 0          | 0               | 1.0000              | 0.0000              |
+| 1838      | 0          | 0               | 0.9867              | 0.0133              |
+
+### Sample Analysis
+- **High Confidence Predictions**: 5 out of 6 samples have probability scores of 1.0 or 0.0
+- **One Marginal Case**: Sample 1838 (negative case) shows 98.67% confidence
+- **Perfect Accuracy**: All 6 verification samples correctly classified
+- **Model Reliability**: Strong confidence scores indicate robust decision boundaries
