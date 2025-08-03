@@ -222,16 +222,34 @@ All predictions match true labels, with reasonable probability margins.
 *Understandable to ML and non-ML but domain experts*
 
 ### 7.1 Key Findings
-[Content to be added]
+The recall-optimized Random Forest model achieved 97.89% recall and 94.73% accuracy, significantly reducing false negatives from 51 to 16 compared to the balanced model.
+
+Key predictive features align strongly with established clinical assessment tools, increasing model credibility.
+
+The model shows no strong dependency on potentially biasing demographic features.
 
 ### 7.2 Clinical Implications
-[Content to be added]
+The tool can serve as a screening aid in primary care, neurology clinics, and memory care centers.
+
+By flagging high-likelihood cases earlier, it can help direct patients to timely specialist evaluation, potentially improving outcomes through earlier treatment or management strategies.
+
+Clinical use must always be accompanied by confirmatory testing and professional review.
 
 ### 7.3 Recommendations for Implementation
-[Content to be added]
+Deploy as an EHR-integrated decision-support module with probabilistic outputs and interpretability tools (e.g., feature contribution display per patient).
+
+Ensure ongoing validation on diverse patient populations to maintain fairness and performance.
+
+Pair deployment with clinician training and clear documentation of intended use and limitations.
 
 ### 7.4 Limitations and Future Work
-[Content to be added]
+Dataset Size: The model is trained on 2,149 patients; larger multi-center datasets would improve generalizability.
+
+Verification Set: Small verification set (n=6) performed perfectly, but more robust testing on an independent test set is needed.
+
+Explainability: Future work should incorporate SHAP or LIME explanations for patient-level predictions to further enhance transparency.
+
+Fairness Monitoring: Real-world deployment should include ongoing subgroup fairness checks, especially across gender and age groups.
 
 <div style="page-break-after: always;"></div>
 
