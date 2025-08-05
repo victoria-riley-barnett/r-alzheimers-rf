@@ -120,16 +120,78 @@ Accuracy, Precision, Recall, F1 score, ROC & AUC discrimination ability, Confusi
 *Present full accuracy and explainability results (similar to HW 2). Adhere to full provenance*
 
 ### 5.1 Performance Metrics
-[Content to be added]
+5.1 Performance Metrics
+The recall-optimized Random Forest model achieved the following out-of-bag performance:
+
+Metric	Value
+OOB Error	5.27%
+Accuracy	94.73%
+Precision	88.42%
+Recall (Sensitivity)	97.89%
+F1 Score	92.92%
+
+These results demonstrate a strong balance between accuracy and recall. 
 
 ### 5.2 Confusion Matrix Analysis
-[Content to be added]
+OOB Confusion Matrix:
+
+Actual	Predicted 0	Predicted 1
+0 (No AD)	1289	97
+1 (AD)	16	741
+
+Interpretation:
+
+False Negatives (16): Significantly reduced versus balanced model.
+
+False Positives (97): Higher than original balanced model, but acceptable since positives will undergo further clinical evaluation.
 
 ### 5.3 Feature Importance
-[Content to be added]
+Top 10 features by Mean Decrease Accuracy:
+
+Rank	Feature	MDA	MDG
+1	FunctionalAssessment	362.91	209.10
+2	ADL	334.87	185.30
+3	MMSE	267.28	150.45
+4	MemoryComplaints	266.71	107.80
+5	BehavioralProblems	196.24	68.89
+6	PatientID	101.63	53.83
+7	Age	4.35	13.56
+8	EducationLevel	3.85	4.73
+9	SleepQuality	2.81	16.12
+10	SystolicBP	2.68	13.36
+
+Interpretation:
+
+Clinical assessments (FunctionalAssessment, ADL, MMSE) dominate predictions.
+
+Behavioral and cognitive indicators also strongly influence classification.
+
+Demographics have minor weight, reducing bias risk.
 
 ### 5.4 Model Validation
-[Content to be added]
+Verification Set Confusion Matrix (6 samples):
+
+Actual	Predicted 0	Predicted 1
+0 (No AD)	3	0
+1 (AD)	0	3
+
+Results:
+
+Verification Accuracy: 100% (6/6 correct)
+
+Observation: Small verification set limits statistical significance, but results align with OOB performance.
+
+Individual Predictions:
+
+Sample ID	True Label	Predicted Class	Prob (Neg)	Prob (Pos)
+966	1	1	0.0597	0.9403
+171	1	1	0.0203	0.9797
+1697	1	1	0.0487	0.9513
+545	0	0	0.9563	0.0437
+1282	0	0	0.9490	0.0510
+1838	0	0	0.9100	0.0900
+
+All predictions match true labels, with reasonable probability margins.
 
 <div style="page-break-after: always;"></div>
 
@@ -160,16 +222,34 @@ Accuracy, Precision, Recall, F1 score, ROC & AUC discrimination ability, Confusi
 *Understandable to ML and non-ML but domain experts*
 
 ### 7.1 Key Findings
-[Content to be added]
+The recall-optimized Random Forest model achieved 97.89% recall and 94.73% accuracy, significantly reducing false negatives from 51 to 16 compared to the balanced model.
+
+Key predictive features align strongly with established clinical assessment tools, increasing model credibility.
+
+The model shows no strong dependency on potentially biasing demographic features.
 
 ### 7.2 Clinical Implications
-[Content to be added]
+The tool can serve as a screening aid in primary care, neurology clinics, and memory care centers.
+
+By flagging high-likelihood cases earlier, it can help direct patients to timely specialist evaluation, potentially improving outcomes through earlier treatment or management strategies.
+
+Clinical use must always be accompanied by confirmatory testing and professional review.
 
 ### 7.3 Recommendations for Implementation
-[Content to be added]
+Deploy as an EHR-integrated decision-support module with probabilistic outputs and interpretability tools (e.g., feature contribution display per patient).
+
+Ensure ongoing validation on diverse patient populations to maintain fairness and performance.
+
+Pair deployment with clinician training and clear documentation of intended use and limitations.
 
 ### 7.4 Limitations and Future Work
-[Content to be added]
+Dataset Size: The model is trained on 2,149 patients; larger multi-center datasets would improve generalizability.
+
+Verification Set: Small verification set (n=6) performed perfectly, but more robust testing on an independent test set is needed.
+
+Explainability: Future work should incorporate SHAP or LIME explanations for patient-level predictions to further enhance transparency.
+
+Fairness Monitoring: Real-world deployment should include ongoing subgroup fairness checks, especially across gender and age groups.
 
 <div style="page-break-after: always;"></div>
 
