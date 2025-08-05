@@ -201,7 +201,7 @@ Accuracy, Precision, Recall, F1 score, ROC & AUC discrimination ability, Confusi
 [Content to be added]
 
 ### 8.3 Juan Mora
-[Content to be added]
+My contributions for this team project include completing the written portion for the Motivation, Problem Description, and Case Study Goals section, as well as conducting the Database Audit and completing its corresponding written portion.
 
 <div style="page-break-after: always;"></div>
 
