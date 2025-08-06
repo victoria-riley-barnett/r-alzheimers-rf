@@ -364,18 +364,18 @@ We can't fully assess fairness because:
 ### 6.4 Transparency Measures
 
 **Model Interpretability**
-- Random Forest is interpretable (can see which features matter)
-- Top features make medical sense (clinical assessments)
-- Provides probability scores so doctors understand confidence
+Random Forest models are inherently interpretable due to their structure and ability to quantify feature importance. In this study, the top predictive features (Functional Assessment, ADL, MMSE) align with established clinical assessments, which increases trust among medical professionals. The model also outputs probability scores rather than binary decisions, helping clinicians gauge the confidence of each prediction rather than relying on a black-box result.
 
 **Documentation**
-- Clear about what the model does and doesn't do
-- Open about limitations (synthetic data, small test set)
-- Performance metrics are clearly reported
+We are transparent about the model’s intended use (as a screening aid, not a diagnostic tool), as well as its limitations, including:
+
+The use of a moderately sized dataset (n=2,149)
+A very small verification set (n=6), limiting external validation
+The fact that real-world performance may vary depending on patient demographics
+All performance metrics—including accuracy, precision, recall, F1 score, and confusion matrix—are reported clearly to support reproducibility
 
 **What Needs Improvement**
 - Remove PatientID from model
-- Better explanation of why certain features are important
 - Real-world testing before deployment
 
 <div style="page-break-after: always;"></div>
