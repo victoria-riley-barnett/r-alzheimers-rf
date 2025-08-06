@@ -444,7 +444,7 @@ My contributions for this project was creating the project.R file itself, which 
 I also contributed to the written sections of the report, particularly in summarizing our findings and recommendations.
 
 ### 8.2 Ahmad Harris
-
+My contributions for this project include part 6 of the report on the auditing for ethics and trustworthiness. My contributions also include the summary and recommendation for possible implementation and researching scholarly articles on similar rf algos for predicting alzheimer's in medical patients.
 ### 8.3 Juan Mora
 My contributions for this team project include completing the written portion for the Motivation, Problem Description, and Case Study Goals section, as well as conducting the Database Audit and completing its corresponding written portion.
 
