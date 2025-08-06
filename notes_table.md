@@ -119,6 +119,8 @@
 - **mtry values**: Higher mtry (15-25) generally perform better than lower values (5-10)
 - **ntree values**: Performance is relatively stable across different tree counts
 - **cutoff values**: Balanced cutoff (0.5,0.5) and conservative cutoff (0.3,0.3) perform best
+- **accuracy equation**: Accuracy = (TP + TN) / (TP + TN + FP + FN)
+- rec- **recall equation**: Recall = TP / (TP + FN)
 
 ## Performance Patterns
 1. **mtry=5 with cutoff=0.3,0.7**: Consistently poor performance (81-82% accuracy)
