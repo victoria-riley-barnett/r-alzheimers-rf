@@ -293,4 +293,4 @@ reran grid search with this cutoff and found the best model, which was:
 | False Negatives | 51 | 16 | -68% |
 | False Positives | 48 | 97 | +102% |
 
-**Clinical Decision**: The recall-optimized model is superior for medical screening as it significantly reduces missed diagnoses with only a minor accuracy trade-off.
+**Clinical Decision**: The recall-optimized model is superior for medical screening as it significantly reduces missed diagnoses with only a minor accuracy trade-off. 
