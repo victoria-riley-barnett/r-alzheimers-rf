@@ -2,7 +2,7 @@
 
 Testing a Random Forest model for early identification of likely Alzheimer's diagnosis. 
 
-Based on widely-available (to physicians) clinical data, and an exercise in representation design: the operatic nature of the Random Forest (the same reason its features explainably decompose, they are algebraically combined) makes it an exceptional architectural choice for working with distinct orders of features. By orders, I mean something that is so cross-functional, but has highly rigorous 'derived' values. Take the features of our RF:
+Based on widely-available (to physicians) clinical data, and an exercise in representation design: the operatic nature of the Random Forest (the same reason its features explainably decompose, they are algebraically combined) makes it an exceptional architectural choice for working with distinct orders of features. By orders, I mean something that is cross-functional to the context of our model, but in it's own domain has highly rigorous technical values (that we model inside our model, as it were). Take the features of our RF:
 
 
 
