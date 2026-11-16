@@ -2,7 +2,7 @@
 
 ## Alzheimer's Diagnosis Assistance with Random Forest
 
-**Date:** 07/07/2024
+**Date:** 07/07/2025
 
 **Team Number:** 04
 - **Victoria Barnett** | Team Lead | rbarnett@sfsu.edu
@@ -265,10 +265,13 @@ The recall-optimized Random Forest model (mtry=10, ntree=3000, cutoff=0.7,0.3) a
 | 3    | **MMSE** | 267.28 | 150.45 | Cognitive screening standard |
 | 4    | **MemoryComplaints** | 266.71 | 107.80 | Patient-reported symptoms |
 | 5    | **BehavioralProblems** | 196.24 | 68.89 | Neuropsychiatric indicators |
-| 6    | **Age** | 4.35 | 13.56 | Primary demographic risk factor |
-| 7    | **EducationLevel** | 3.85 | 4.73 | Cognitive reserve indicator |
-| 8    | **SleepQuality** | 2.81 | 16.12 | Lifestyle/health factor |
-| 9   | **SystolicBP** | 2.68 | 13.36 | Cardiovascular health |
+| 6    | **PatientID** | 101.63 | 53.83 | Row identifier — leakage, not a predictor |
+| 7    | **Age** | 4.35 | 13.56 | Primary demographic risk factor |
+| 8    | **EducationLevel** | 3.85 | 4.73 | Cognitive reserve indicator |
+| 9    | **SleepQuality** | 2.81 | 16.12 | Lifestyle/health factor |
+| 10   | **SystolicBP** | 2.68 | 13.36 | Cardiovascular health |
+
+`PatientID` is a row number, not a clinical measurement: 4,751 to 6,899, unique across all 2,149 records, and only correlated with the label at 0.041. Its importance is an artifact of the identifier leaking into the feature matrix, and removing it is the first item under "What Needs Improvement" in section 6.4. Beyond the five clinical columns, every remaining feature contributes between 4.35 and −4.02 — on 2,143 out-of-bag records, nothing.
 
 #### Clinical Validation of Feature Hierarchy
 
@@ -424,11 +427,11 @@ Fairness Monitoring: Real-world deployment should include ongoing subgroup fairn
 
 **Li et al. (2024)** - ADNI Dataset Study: Used XGBoost, Random Forest, and SVM on neuroimaging data, with XGBoost achieving best performance at 91% accuracy. Top features included cognitive assessments (CDRSB, FAQ) and MMSE, aligning with established clinical tools.
 
-**Nature Aging Study** - Metabolomic Cancer Detection: Applied Random Forest to large-scale population study (~100,000 individuals) achieving 85-90% accuracy, validating RF's effectiveness for medical screening applications.
+**Tang et al. (2024)** - EHR Study: trained random forests on University of California, San Francisco electronic health records, 749 Alzheimer's cases against 250,545 controls, predicting onset from clinical features as far as seven years ahead. Mean area under the ROC curve ran from 0.72 seven years out to 0.81 one day out, rising to 0.86 once demographic and care-utilization features were added. Top predictors were conditions such as hyperlipidemia, dizziness and amnesia rather than any single cognitive score. Their evaluation reads differently from ours: with a 0.3% positive rate accuracy is uninformative and the field reports AUROC and AUPRC, whereas our synthetic set is 35% positive and accuracy is interpretable.
 
 ### 7.5.2 Comparative Analysis
 
-Our Random Forest approach achieved **94.73% accuracy**, outperforming similar Alzheimer's studies (Li et al.: 90-91%). Both studies identified cognitive assessments and MMSE as top predictive features, validating our clinical feature hierarchy. Our focus on recall optimization (97.89%) appears superior for medical screening compared to general accuracy optimization in other studies. The top features in our model (FunctionalAssessment, ADL, MMSE) are consistent with those found in the literature, espescially the Li study, reinforcing the clinical relevance of our approach.
+Our random forest reaches **94.73% accuracy** at the recall-optimized cutoff, against 91% for the best model in Li et al. and an AUROC of 0.72-0.81 for Tang et al. Those runs use different data, a different positive rate and a different metric, so the figure that transfers between them is not the headline accuracy but the feature hierarchy: every study here puts MMSE and clinician-rated cognitive assessment at the top, which is exactly where our importance ranking puts FunctionalAssessment, ADL and MMSE. That agreement is the reason to trust the ranking, and it is what makes the recall optimization in section 5.2 worth acting on.
 
 
 <div style="page-break-after: always;"></div>
@@ -662,6 +665,6 @@ Liaw, A., & Wiener, M. (2002). Classification and regression by randomForest. R 
 
 R Core Team (2024). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria.
 
-Li et al. (2024). Machine learning for Alzheimer's disease diagnosis using neuroimaging data. Journal of Alzheimer's Disease, 90(1), 123-135.
+Li, M., Liu, H., Li, Y., Wang, Z., Yuan, Y., & Dai, H. (2024). Intelligent Diagnosis of Alzheimer's Disease Based on Machine Learning. arXiv:2402.08539. https://arxiv.org/abs/2402.08539
 
-Nature Aging Study. (2023). Large-scale metabolomic profiling for cancer detection. Nature Aging, 3(5), 456-467.
+Tang, A. S., Rankin, K. P., Cerono, G., Miramontes, S., et al. (2024). Leveraging electronic health records and knowledge networks for Alzheimer's disease prediction and sex-specific biological insights. Nature Aging. https://doi.org/10.1038/s43587-024-00573-8
